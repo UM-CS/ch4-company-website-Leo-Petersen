@@ -8,11 +8,20 @@ def home_page_view(request):
     } 
     return render(request, "home.html", context) 
 
-class AboutPageView(TemplateView):  # new 
+class AboutPageView(TemplateView): 
     template_name = "about.html"
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs) 
+        context["contact_address"] = "123 Main Street" 
+        context["phone_number"] = "555-555-5555" 
+        return context
     
-def get_context_data(self, **kwargs):  # new 
-    context = super().get_context_data(**kwargs) 
-    context["contact_address"] = "123 Main Street" 
-    context["phone_number"] = "555-555-5555" 
-    return context
+class ProductsPageView(TemplateView):
+    template_name = "products.html"
+    def get_context_data(self, **kwargs): 
+        context = super().get_context_data(**kwargs) 
+        context["product_1"] = "Sandwiches"
+        context["product_2"] = "Toasters"
+        context["product_3"] = "ICBMs"
+        context["product_4"] = "Fridges"
+        return context
